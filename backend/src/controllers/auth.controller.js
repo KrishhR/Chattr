@@ -20,7 +20,7 @@ export const handleUserSignUp = async (req, res) => {
             });
         }
 
-        const user = await User.findOne();
+        const user = await User.findOne({ email });
         if (user) {
             return res.status(400).json({
                 success: false,
@@ -53,7 +53,10 @@ export const handleUserSignUp = async (req, res) => {
                 },
             });
         } else {
-            res.status(400).json({ success: false, message: "Invalid user data!" });
+            res.status(400).json({
+                success: false,
+                message: "Invalid user data!"
+            });
         }
     } catch (error) {
         console.log("Error in signup controller: ", error.message);
@@ -143,7 +146,7 @@ export const handleUpdateProfile = async (req, res) => {
         if (!profileImgUrl) {
             return res.status(400).json({
                 success: false,
-                message: "Profile picture is required."
+                message: "Profile picture is required.",
             });
         }
 
@@ -184,4 +187,4 @@ export const handleCheckAuth = (req, res) => {
             message: "Internal server error.",
         });
     }
-}
+};

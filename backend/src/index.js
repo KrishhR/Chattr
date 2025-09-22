@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js";
 
 import { connectToMongoDB } from "./lib/db.js";
 
@@ -15,6 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/chat", messageRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
