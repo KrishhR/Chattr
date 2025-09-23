@@ -21,11 +21,9 @@ const SignupPage = () => {
     const validateFormData = () => {
         if (!formData.fullName.trim()) return toast.error("Full name is required");
         if (!formData.email.trim()) return toast.error("Email is required");
-        if (!/\S+@\S+\.\S+/.test(formData.email))
-            return toast.error("Invalid email format");
+        if (!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("Invalid email format");
         if (!formData.password) return toast.error("Password is required");
-        if (formData.password.length < 6)
-            toast.error("Password must be atleast 6 characters");
+        if (formData.password.length < 6) return toast.error("Password must be atleast 6 characters");
 
         return true;
     };
@@ -33,7 +31,7 @@ const SignupPage = () => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         const success = validateFormData();
-        if (success == true) {
+        if (success === true) {
             signUp(formData);
         }
     };
@@ -151,16 +149,16 @@ const SignupPage = () => {
                                 "Create Account"
                             )}
                         </button>
-
-                        <div className="text-center">
-                            <p className="text-base-content/60">
-                                Already have an account?{" "}
-                                <Link to={"/login"} className="link no-underline link-primary">
-                                    Sign in
-                                </Link>
-                            </p>
-                        </div>
                     </form>
+
+                    <div className="text-center">
+                        <p className="text-base-content/60">
+                            Already have an account?{" "}
+                            <Link to={"/login"} className="link no-underline link-primary">
+                                Sign in
+                            </Link>
+                        </p>
+                    </div>
                 </div>
             </div>
 
