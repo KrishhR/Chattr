@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
-import { LogOut, MessageSquare, Settings, User } from "lucide-react";
+import { LogOut, MessageSquare, Settings, } from "lucide-react";
 
 const Navbar = () => {
     const { authUser, logout } = useAuthStore();
@@ -22,21 +22,26 @@ const Navbar = () => {
 
                     {/* right side of navbar */}
                     <div className="flex items-center gap-2">
-                        <Link to="/settings" className="btn btn-sm gap-2 transition-colors">
-                            <Settings className="size-4" />
-                            <span className="hidden sm:inline">Settings</span>
+                        <Link to="/settings" className="btn btn-sm gap-2 transition-colors tooltip tooltip-left" data-tip="Settings">
+                            <Settings className="size-6" />
+                            {/* <span className="hidden sm:inline">Settings</span> */}
                         </Link>
 
                         {authUser && (
                             <>
-                                <Link to="/profile" className="btn btn-sm gap-2 transition-colors">
-                                    <User className="size-4" />
-                                    <span className="hidden sm:inline">Profile</span>
+                                <Link to="/profile" className="flex items-center gap-1 bg-transparent tooltip tooltip-bottom" data-tip="Profile">
+                                    {/* <User className="size-4" /> */}
+                                    <img
+                                        src={authUser?.profileImgUrl || "/avatar.png"}
+                                        alt="Profile Image"
+                                        className="size-8 rounded-full object-cover"
+                                    />
+                                    {/* <span className="hidden sm:inline">Profile</span> */}
                                 </Link>
 
-                                <button className="btn btn-sm flex gap-2 items-center" onClick={logout}>
-                                    <LogOut className="size-4" />
-                                    <span className="hidden sm:inline">Logout</span>
+                                <button className="btn btn-sm flex gap-2 items-center tooltip tooltip-bottom" data-tip="Logout" onClick={logout}>
+                                    <LogOut className="size-6" />
+                                    {/* <span className="hidden sm:inline">Logout</span> */}
                                 </button>
                             </>
                         )}

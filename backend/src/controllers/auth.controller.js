@@ -49,7 +49,9 @@ export const handleUserSignUp = async (req, res) => {
                     _id: newUser._id,
                     email: newUser.email,
                     fullName: newUser.fullName,
-                    profileImgurl: newUser.profileImgUrl,
+                    profileImgUrl: newUser.profileImgUrl,
+                    createdAt: newUser.createdAt,
+                    updatedAt: newUser.updatedAt,
                 },
             });
         } else {
@@ -103,7 +105,9 @@ export const handleUserLogin = async (req, res) => {
                     _id: user._id,
                     email: user.email,
                     fullName: user.fullName,
-                    profileImgurl: user.profileImgUrl,
+                    profileImgUrl: user.profileImgUrl,
+                    createdAt: user.createdAt,
+                    updatedAt: user.updatedAt,
                 },
             });
         } else {
@@ -160,7 +164,14 @@ export const handleUpdateProfile = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Profile picture uploaded successfully!",
-            user: { ...updatedUser },
+            user: {
+                _id: updatedUser._id,
+                email: updatedUser.email,
+                fullName: updatedUser.fullName,
+                profileImgUrl: updatedUser.profileImgUrl,
+                createdAt: updatedUser.createdAt,
+                updatedAt: updatedUser.updatedAt,
+            },
         });
     }
     catch (error) {
@@ -177,7 +188,14 @@ export const handleCheckAuth = (req, res) => {
         const user = req.user;
         return res.status(200).json({
             success: true,
-            user,
+            user: {
+                _id: user._id,
+                email: user.email,
+                fullName: user.fullName,
+                profileImgUrl: user.profileImgUrl,
+                createdAt: user.createdAt,
+                updatedAt: user.updatedAt,
+            },
         });
     }
     catch (error) {
