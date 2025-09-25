@@ -29,7 +29,7 @@ const Navbar = () => {
 
                         {authUser && (
                             <>
-                                <Link to="/profile" className="flex items-center gap-1 bg-transparent tooltip tooltip-bottom" data-tip="Profile">
+                                <Link to="/profile" className="btn btn-sm flex items-center tooltip tooltip-bottom" data-tip="Profile">
                                     {/* <User className="size-4" /> */}
                                     <img
                                         src={authUser?.profileImgUrl || "/avatar.png"}
