@@ -9,7 +9,7 @@ export const handleGetUsersForSidebar = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            users: filteredUsers
+            users: [...filteredUsers]
         })
 
     }
@@ -55,7 +55,7 @@ export const handleSendMessage = async (req, res) => {
         const userId = req.user._id;
 
         let imageUrl;
-        if(image) {
+        if (image) {
             const uploadResponse = await cloudinary.uploader.upload(image);
             imageUrl = uploadResponse.secure_url;
         }
@@ -69,8 +69,13 @@ export const handleSendMessage = async (req, res) => {
 
         await newMessage.save();
 
+        return res.status(200).json({
+            success: true,
+            newMessage,
+        });
+
         // TODO: Realtime functionality goes here => socket.io
-    } 
+    }
     catch (error) {
         console.log("Error in sendMessage controller: ", error.message);
         return res.status(500).json({
