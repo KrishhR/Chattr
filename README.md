@@ -2,7 +2,7 @@
 
 [Live Demo](https://chattr-realtime-chat-app.onrender.com/)
 
-Chattr is a full-stack real-time chat application built with Node.js, Express, React, Zustand, and Socket.io. It allows users to register, log in, and chat instantly with other users, supporting text and media messages. The app is deployed and accessible online.
+Chattr is a full-stack real-time chat application built with Node.js, Express, React, Zustand, Socket.io, and Cloudinary. It allows users to register, log in, and chat instantly with other users, supporting text and media messages. The app is deployed and accessible online.
 
 ---
 
@@ -11,7 +11,7 @@ Chattr is a full-stack real-time chat application built with Node.js, Express, R
 - **User Authentication:** Register and log in securely.
 - **User List:** See all available users to chat with.
 - **Real-Time Messaging:** Instant message delivery using Socket.io.
-- **Media Support:** Send images and media attachments.
+- **Media Support:** Send images and media attachments (stored via Cloudinary).
 - **Responsive UI:** Mobile-friendly and modern design.
 - **Message Timestamps:** Each message displays its sent time.
 - **Loading Skeletons:** Smooth UX with loading indicators.
@@ -27,6 +27,7 @@ Chattr is a full-stack real-time chat application built with Node.js, Express, R
 - **Real-Time:** Socket.io
 - **Database:** MongoDB (via Mongoose)
 - **Authentication:** JWT
+- **Media Storage:** Cloudinary
 - **Deployment:** Render
 
 ---
@@ -59,7 +60,7 @@ Chattr/
    Select a user to start chatting. Messages are sent and received in real time.
 
 4. **Media:**  
-   Attach images to messages.
+   Attach images to messages. Images are uploaded and stored securely using Cloudinary.
 
 5. **Notifications:**  
    Errors and important actions are shown via toast notifications.
@@ -72,13 +73,14 @@ Chattr/
 
 - Node.js & npm
 - MongoDB (local or Atlas)
+- Cloudinary account
 
 ### Backend
 
 ```bash
 cd backend
 npm install
-# Configure .env for MongoDB URI and JWT secret
+# Configure .env for MongoDB URI, JWT secret, and Cloudinary credentials
 npm start
 ```
 
@@ -99,6 +101,9 @@ npm start
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
 CLIENT_URL=http://localhost:3000
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
 **Frontend (.env):**
@@ -112,12 +117,6 @@ REACT_APP_API_URL=http://localhost:5000
 
 The app is deployed on [Render](https://render.com/).  
 Live URL: [https://chattr-realtime-chat-app.onrender.com/](https://chattr-realtime-chat-app.onrender.com/)
-
----
-
-## Screenshots
-
-*(Add screenshots here if available)*
 
 ---
 
