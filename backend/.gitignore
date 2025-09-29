@@ -125,9 +125,6 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-#ignore seeds file
-seeds/
-
 # yarn v3
 .pnp.*
 .yarn/*

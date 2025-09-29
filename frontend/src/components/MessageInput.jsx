@@ -10,6 +10,7 @@ const MessageInput = () => {
 
     const [text, setText] = useState("");
     const [imagePreview, setImagePreview] = useState(null);
+    const [disableSubmitBtn, setDisableSubmitBtn] = useState(false);
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -35,6 +36,7 @@ const MessageInput = () => {
 
         if (!text.trim() && !imagePreview) return;
         try {
+            setDisableSubmitBtn(true);
             await sendMessage({
                 text: text.trim(),
                 image: imagePreview,
@@ -42,6 +44,7 @@ const MessageInput = () => {
             // clear form
             setText("");
             setImagePreview(null);
+            setDisableSubmitBtn(false);
             if (fileInputRef.current) fileInputRef.current.value = "";
         }
         catch (error) {
@@ -104,8 +107,8 @@ const MessageInput = () => {
                 </div>
                 <button
                     type="submit"
-                    className={`btn btn-sm ${!text.trim() && !imagePreview ? 'bg-zinc-400' : 'btn-primary'}`}
-                    disabled={!text.trim() && !imagePreview}
+                    className={`btn btn-sm ${((!text.trim() && !imagePreview) || disableSubmitBtn) ? 'bg-zinc-400' : 'btn-primary'}`}
+                    disabled={(!text.trim() && !imagePreview) || disableSubmitBtn}
                 >
                     <Send size={20} />
                 </button>
