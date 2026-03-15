@@ -3,7 +3,7 @@ import https from 'https';
 
 const url = 'https://chattr-realtime-chat-app.onrender.com/';
 
-const job = new cron.CronJob("*/1 * * * *", () => {
+const job = new cron.CronJob("*/14 * * * *", () => {
     console.log("Cron triggered at:", new Date().toLocaleTimeString());
 
     https
