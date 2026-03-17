@@ -32,11 +32,12 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/chat", messageRoutes);
+// app.get("/ping", (req, res) => res.status(200).send("pong"));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-    app.use('*', (req, res) => {
+    app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
     });
 }
