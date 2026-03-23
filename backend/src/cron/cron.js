@@ -1,7 +1,7 @@
 import cron from 'cron';
 import https from 'https';
 
-const url = 'https://chattr-realtime-chat-app.onrender.com/';
+const url = 'https://chattr-realtime-chat-app.onrender.com';
 
 const job = new cron.CronJob("*/14 * * * *", () => {
     console.log("Cron triggered at:", new Date().toLocaleTimeString());
@@ -44,6 +44,15 @@ export default job;
     * * * * *
 
     NOTE: Some Node libraries like "node-cron" support an optional seconds field.
+
+    Some Examples:
+    1. * 14 * * * * - Every 14 minutes
+    2. * 0 0 * * 0 - At midnight on every Sunday
+    3. * 30 3 15 * * - At 3:30 AM, on the 15th of every month
+    4. * 0 0 1 1 * - At midnight, on January 1st
+    5. * 0 * * * * - Every hour
+    6. '4,5 * * * *' will run at the 4th and 5th minute of each hour.
+    7. '1-3 * * * *' will run every first ,second and third minute of each hour
 
     
     PROBLEM: 
