@@ -34,11 +34,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/chat", messageRoutes);
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '/frontend/dist')));
+    app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-    // Use regex instead of '*' for Express 5 compatibility
     app.get(/(.*)/, (req, res) => {
-        res.sendFile(path.join(__dirname, "/frontend", "dist", "index.html"));
+        res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
     });
 }
 
