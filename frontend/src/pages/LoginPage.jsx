@@ -35,6 +35,17 @@ const LoginPage = () => {
         }
     };
 
+    const loginAsGuest = () => {
+        // Valid User
+        const TestUser = {
+            email: "user@test.com",
+            password: "Test@1234"
+        };
+        // Since, its a test user, so it will already be valid. No need to check for validity
+        setFormData({ ...TestUser });
+        login(TestUser);
+    }
+
     return (
         <div className="min-h-screen grid lg:grid-cols-2">
 
@@ -117,6 +128,10 @@ const LoginPage = () => {
                             ) : (
                                 "Sign in"
                             )}
+                        </button>
+
+                        <button type="button" onClick={loginAsGuest} disabled={isLoggingIn} className="btn btn-soft text-sm w-full">
+                            Login as guest
                         </button>
                     </form>
 

@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 import { LogOut, MessageSquare, Settings, } from "lucide-react";
 
 const Navbar = () => {
     const { authUser, logout } = useAuthStore();
+    const location = useLocation();
 
     return (
         <header className="border-b border-base-300 w-full fixed top-0 z-40 backdrop-blur-lg bg-base-100/80">
@@ -22,14 +23,14 @@ const Navbar = () => {
 
                     {/* right side of navbar */}
                     <div className="flex items-center gap-2">
-                        <Link to="/settings" className="btn btn-sm gap-2 transition-colors tooltip tooltip-left" data-tip="Settings">
+                        <Link to={location.pathname === '/settings' ? "/" : "/settings"} className="btn btn-sm gap-2 transition-colors tooltip tooltip-left" data-tip="Settings">
                             <Settings className="size-6" />
                             {/* <span className="hidden sm:inline">Settings</span> */}
                         </Link>
 
                         {authUser && (
                             <>
-                                <Link to="/profile" className="btn btn-sm flex items-center tooltip tooltip-bottom" data-tip="Profile">
+                                <Link to="/profile" className="btn btn-sm flex items-center tooltip tooltip-bottom" data-tip={authUser.fullName ?? "Profile"}>
                                     {/* <User className="size-4" /> */}
                                     <img
                                         src={authUser?.profileImgUrl || "/avatar.png"}
