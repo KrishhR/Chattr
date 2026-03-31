@@ -21,10 +21,9 @@ const __dirname = path.resolve();
 
 // Middlewares
 app.use(cors({
-    origin: 'http://localhost:5173',
-    // origin: process.env.NODE_ENV === "production"
-    //     ? "https://chattr-realtime-chat-app.onrender.com"
-    //     : "http://localhost:5173",
+    origin: process.env.NODE_ENV === "production"
+        ? "https://chattr-realtime-chat-app.onrender.com"
+        : "http://localhost:5173",
     credentials: true
 }));
 app.use(cookieParser());
@@ -37,9 +36,9 @@ app.use("/api/chat", messageRoutes);
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
-    // frontend(react) app
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, "/frontend", "dist", "index.html"));
+    // Use regex instead of '*' for Express 5 compatibility
+    app.get(/(.*)/, (req, res) => {
+        res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
     });
 }
 
