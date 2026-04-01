@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/KrishhR/Chattr/issues"
   },
-  "homepage": "https://github.com/KrishhR/Chattr#readme"
+  "homepage": "https://github.com/KrishhR/Chattr#readme",
+  "devDependencies": {
+    "rollup-plugin-visualizer": "^7.0.1"
+  }
 }
